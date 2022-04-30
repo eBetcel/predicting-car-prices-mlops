@@ -27,7 +27,13 @@ CARS.head()
 #  with continuous values
 #  from -
 # https://archive.ics.uci.edu/ml/machine-learning-databases/autos/imports-85.names
-CONTINOUS_VALUES_COLS = ['normalized-losses', 'wheel-base', 'length', 'width', 'height', 'curb-weight', 'engine-size', 'bore', 'stroke', 'compression-rate', 'horsepower', 'peak-rpm', 'city-mpg', 'highway-mpg', 'price']
+CONTINOUS_VALUES_COLS = [
+    'normalized-losses', 'wheel-base', 'length',
+    'width', 'height', 'curb-weight',
+    'engine-size', 'bore', 'stroke',
+    'compression-rate', 'horsepower', 'peak-rpm',
+    'city-mpg', 'highway-mpg', 'price'
+    ]
 NUMERIC_CARS = CARS[CONTINOUS_VALUES_COLS]
 
 NUMERIC_CARS.head(5)
@@ -258,10 +264,9 @@ def knn_train_test3(train_cols, target_col, data_frame):
     train_data_frame = rand_data_frame.iloc[0:last_train_row]
     test_data_frame = rand_data_frame.iloc[last_train_row:]
 
-    k_values = [i for i in range(1, 25)]
     k_rmses = {}
 
-    for k_4 in k_values:
+    for k_4 in range(1, 25):
         # Fit model using k nearest neighbors.
         knn = KNeighborsRegressor(n_neighbors=k_4)
         knn.fit(train_data_frame[train_cols], train_data_frame[target_col])
